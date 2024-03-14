@@ -10,7 +10,7 @@
 <img src="bob1.jpeg"class="foto">
 	<div> 	
 <h><b>RADIO  REGGAE <br>
-	  <button onclick="document.getElementById('player').pause()">Pause</button> 	 <button onclick="document.getElementById('player').volume+=0.1">Aumentar volume</button> 	 <button onclick="document.getElementById('player').volume-=0.1">Diminuir volume</button> 
+	  <button onclick="document.getElementById('player').pause()" class="bbt">Pause</button> 	 <button onclick="document.getElementById('player').volume+=0.1"class="bbt">Aumentar volume</button> 	 <button onclick="document.getElementById('player').volume-=0.1"class="bbt">Diminuir volume</button> 
 	  <br><br>
 <audio id="player" autoplay="autoplay" controls="controls"class="aud"> 	 <source src="01 Prisioneiro.mp3" type="audio/mp3" /> 	  	</audio>
 
@@ -24,8 +24,8 @@
 	   <style>
 	   
 	   body {
-	       background:green;
-	   }
+	       background:green;}
+	
 	   h3 {
 	       margin-left:100px;
 	   }
@@ -34,16 +34,21 @@
 	       color:red;
 	   }
 	   .aud{
+	       margin-left:20px;
 	       width:90%;
 	       height:40px;
-	       
 	   }
 	   .foto {
     position:absolute;
     background:none;
     width:95%;
-    height:500px;}
+    height:500px;
     
+    }
+    .bbt {
+        position:relative;
+        margin-left:10px;
+    }
 	   </style>
 	   </html> 
 
