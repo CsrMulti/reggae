@@ -16,13 +16,13 @@
 
 <a href="#">
 <button class="" onclick="" id="btn3" for="">ENTREVISTA</button></a>
-
+<br><br>
 <a href="#">
 <button class="" onclick="" id="btn4" for="">AO VIVO</button></a>
 <a href="">
-<button class="" onclick="" id="btn5" for="">DIVULGACAO DE EVENTOS</button></a><br><br>
-
-
+<button class="" onclick="" id="btn5" for="">DIVULGACAO DE EVENTOS</button></a><br>
+<a href="https://multijogo.github.io/Link-de-pagamento-pix/">
+<button class="blink" id="doa"><b>CLICK AQUI <BR>↘MATENHA O SITE NO AR↙<br> ↘FACA UMA DOAÇÃO DE R$ 2.00↙</button></a>
 <style>
 body {
     background:
@@ -33,6 +33,7 @@ body {
 height:40px;
 width:30%;
 background:red;
+color:white;
 padding:5px;
 border-radius:30px;
 outline:none;
@@ -64,7 +65,7 @@ border:auto;
 
 }
 #btn4{
-    position:relative;
+    position:relative  ;
 height:40px;
 width:30%;
 background:green;
@@ -72,22 +73,16 @@ color:white;
 padding:5px;
 border-radius:30px;
 outline:none;
-border:10px;
-
-
-
 }
 #btn5 {
-    position:relative;
+position:relative ;
 height:40px;
 width:30%;
-background:green;
+background:red;
 color:white;
 padding:5px;
 border-radius:30px;
 outline:none;
-border:auto;
-
 }
 h3{
     text-aligh:center;
@@ -97,17 +92,26 @@ h3{
     position:absolute;
     background:none;
     width:95%;
-    height:500px;}
+    height:500px;
+    
+    }
     
 .txtarea {
     position:relative;
     width:100%;
     height:200px;
-    bottom:0%;
-    
-        
+    bottom:0%;   
+    }
+    #doa {position:absolute;
+        bottom:5%;
+        height:50px;
+        width:95%;
+        border-radius:10px;
     }
     
+     .blink { animation: blink 5s steps(1, end) infinite;}@keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; }}
+     
+     </style>
 </style>
 </body>
 </html>
