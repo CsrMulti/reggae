@@ -1,119 +1,158 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<link rel="shortcut icon" type="image/png" href="https://raw.githubusercontent.com/CsrMulti/reggae/refs/heads/main/pedrada.jpg">
+    <link rel="shortcut icon" type="image/png" href="https://raw.githubusercontent.com/CsrMulti/reggae/refs/heads/main/pedrada.jpg">
     <link rel="icon" href="https://raw.githubusercontent.com/CsrMulti/reggae/refs/heads/main/pedrada.jpg" type="image/jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<title>TOP REGGAE</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background: green;
-        color: white;
-    }
-    #playerContainer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: black;
-        padding: 10px;
-        text-align: center;
-        z-index: 9999;
-    }
-    audio {
-        width: 90%;
-    }
-    .bbt {
-        margin: 5px;
-        padding: 10px;
-        border-radius: 5px;
-        background: gold;
-        color: black;
-        font-weight: bold;
-        border: none;
-        cursor: pointer;
-    }
-    .pedrada{
-          width:100%;
-          
-    }
-</style>
+    <title>TOP REGGAE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: green;
+            color: white;
+            text-align: center;
+        }
+        #playerContainer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: black;
+            padding: 10px;
+            text-align: center;
+            z-index: 9999;
+        }
+        audio {
+        Margin:5px;
+            width: 90%;
+        }
+        .bbt {
+            margin:2 px;
+            
+            padding: 8px;
+            border-radius: 5px;
+            background: gold;
+            color: black;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+        .pedrada {
+            width: 100%;
+        }
+        p{
+              margin:3px;
+        }
+        h3{
+              margin:3px;
+        }
+    </style>
 </head>
 <body>
-      <img class="pedrada"src="https://raw.githubusercontent.com/CsrMulti/reggae/refs/heads/main/pedrada.jpg">
-<h3>PLAYLIST SÓ PEDRADA DO REGGAE</h3>
-<p>Atualizado em: <b>15/11/2024</b></p>
-
-<div id="playerContainer">
-      <button onclick="player.volume -= 0.1" class="bbt">Diminuir Volume</button>
+    <img class="pedrada" src="https://raw.githubusercontent.com/CsrMulti/reggae/refs/heads/main/pedrada.jpg">
+    <p>Atualizado em: <b>15/11/2024</b></p>
+    <h3>PLAYLIST SÓ PEDRADA DO REGGAE</h3>
+    <p id="musicaAtual">Tocando agora: Nenhuma música</p>
     
-    <button onclick="player.pause()" class="bbt">Pause</button>
-    <button onclick="player.volume += 0.1" class="bbt">Aumentar Volume</button>
-    <audio id="musicPlayer" controls autoplay>
-        Seu navegador não suporta o elemento de áudio.
-    </audio>
-    <br>
     
-    <button onclick="tocarAnterior()" class="bbt">Música Anterior</button>
-    <button onclick="tocarProxima()" class="bbt">Próxima Música</button>
-</div>
 
-<script>
-// Lista de músicas
-const musicas = [
-    "01 Prisioneiro.mp3",
-    "etiopia.MP3",
-    "11_CRIMINALIDADE.MP3",
-    "certeza.mp3",
-   "01.mp3",
-   "02.mp3",
-   "03.mp3",
-   "04.mp3",
-    "05.mp3",
-    "06.mp3",
-    "07.mp3",
-    "08.mp3",
-    "09.mp3",
-    "10.mp3",
-    "11.mp3",
-    "12.mp3",
-    "13.mp3",
-    "14.mp3",
-    "15.mp3",
-    "16.mp3",
-    "17.mp3",
-    "18.mp3",
-    "19.mp3",
-    "20.mp3"
-];
+    <div id="playerContainer">
+        <button onclick="diminuirVolume()" class="bbt">Diminuir Volume</button>
+        <button onclick="player.pause()" class="bbt">Pause</button>
+        <button onclick="player.play()" class="bbt">Play</button>
+        <button onclick="aumentarVolume()" class="bbt">Aumentar Volume</button>
+        <audio id="musicPlayer" controls autoplay>
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
+        <br>
+        <button onclick="tocarAnterior()" class="bbt">Música Anterior</button>
+        <button onclick="tocarProxima()" class="bbt">Próxima Música</button>
+    </div>
 
-let indiceAtual = 0;
-const player = document.getElementById("musicPlayer");
+    <script>
+        // Lista de músicas
+        const musicas = [
+            "./01 Prisioneiro.mp3",
+            "./etiopia.MP3",
+            "./11_CRIMINALIDADE.MP3",
+            "./certeza.mp3",
+            "./01.mp3",
+            "./02.mp3",
+            "./03.mp3",
+            "./04.mp3",
+            "./05.mp3",
+            "./06.mp3",
+            "./07.mp3",
+            "./08.mp3",
+            "./09.mp3",
+            "./10.mp3",
+            "./11.mp3",
+            "./12.mp3",
+            "./13.mp3",
+            "./14.mp3",
+            "./15.mp3",
+            "./16.mp3",
+            "./17.mp3",
+            "./18.mp3",
+            "./19.mp3",
+            "./20.mp3"
+        ];
 
-// Carregar a primeira música
-document.addEventListener("DOMContentLoaded", () => {
-    player.src = musicas[indiceAtual];
-    player.play();
-});
+        let indiceAtual = 0;
+        const player = document.getElementById("musicPlayer");
 
-// Tocar próxima música
-function tocarProxima() {
-    indiceAtual = (indiceAtual + 1) % musicas.length;
-    player.src = musicas[indiceAtual];
-    player.play();
-}
+        // Atualizar o nome da música
+        function atualizarNomeMusica() {
+            const musicaAtual = musicas[indiceAtual].replace('./', '').replace('.mp3', '');
+            document.getElementById("musicaAtual").textContent = `Tocando agora: ${musicaAtual}`;
+        }
 
-// Tocar música anterior
-function tocarAnterior() {
-    indiceAtual = (indiceAtual - 1 + musicas.length) % musicas.length;
-    player.src = musicas[indiceAtual];
-    player.play();
-}
+        // Carregar a primeira música
+        document.addEventListener("DOMContentLoaded", () => {
+            player.src = musicas[indiceAtual];
+            player.play().catch(() => {
+                console.log("Autoplay bloqueado. Usuário precisa interagir.");
+            });
+            atualizarNomeMusica();
+            player.volume = 0.5; // Define volume inicial
+        });
 
-// Continuar com a próxima música automaticamente
-player.addEventListener("ended", tocarProxima);
-</script>
+        // Tocar próxima música
+        function tocarProxima() {
+            indiceAtual = (indiceAtual + 1) % musicas.length;
+            player.src = musicas[indiceAtual];
+            player.play();
+            atualizarNomeMusica();
+        }
+
+        // Tocar música anterior
+        function tocarAnterior() {
+            indiceAtual = (indiceAtual - 1 + musicas.length) % musicas.length;
+            player.src = musicas[indiceAtual];
+            player.play();
+            atualizarNomeMusica();
+        }
+
+        // Controle de volume
+        function diminuirVolume() {
+            if (player.volume > 0.1) {
+                player.volume -= 0.1;
+            } else {
+                player.volume = 0;
+            }
+        }
+
+        function aumentarVolume() {
+            if (player.volume < 0.9) {
+                player.volume += 0.1;
+            } else {
+                player.volume = 1;
+            }
+        }
+
+        // Continuar com a próxima música automaticamente
+        player.addEventListener("ended", tocarProxima);
+    </script>
 </body>
 </html>
