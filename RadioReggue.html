@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta charset="UTF-8"/> 
+<link rel="shortcut icon" type="image/png" href="https://raw.githubusercontent.com/CsrMulti/reggae/refs/heads/main/pedrada.jpg">
+    <link rel="icon" href="https://raw.githubusercontent.com/CsrMulti/reggae/refs/heads/main/pedrada.jpg" type="image/jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>TOP REGGAE</title>
 <style>
     body {
@@ -33,21 +35,27 @@
         border: none;
         cursor: pointer;
     }
+    .pedrada{
+          width:100%;
+          
+    }
 </style>
 </head>
 <body>
+      <img class="pedrada"src="https://raw.githubusercontent.com/CsrMulti/reggae/refs/heads/main/pedrada.jpg">
 <h3>PLAYLIST SÓ PEDRADA DO REGGAE</h3>
 <p>Atualizado em: <b>15/11/2024</b></p>
 
 <div id="playerContainer">
+      <button onclick="player.volume -= 0.1" class="bbt">Diminuir Volume</button>
+    
+    <button onclick="player.pause()" class="bbt">Pause</button>
+    <button onclick="player.volume += 0.1" class="bbt">Aumentar Volume</button>
     <audio id="musicPlayer" controls autoplay>
         Seu navegador não suporta o elemento de áudio.
     </audio>
     <br>
-    <button onclick="player.volume -= 0.1" class="bbt">Diminuir Volume</button>
     
-    <button onclick="player.pause()" class="bbt">Pause</button>
-    <button onclick="player.volume += 0.1" class="bbt">Aumentar Volume</button>
     <button onclick="tocarAnterior()" class="bbt">Música Anterior</button>
     <button onclick="tocarProxima()" class="bbt">Próxima Música</button>
 </div>
@@ -59,6 +67,10 @@ const musicas = [
     "etiopia.MP3",
     "11_CRIMINALIDADE.MP3",
     "certeza.mp3",
+   "01.mp3",
+   "02.mp3",
+   "03.mp3",
+   "04.mp3",
     "05.mp3",
     "06.mp3",
     "07.mp3",
