@@ -5,103 +5,45 @@
 <meta charset="UTF-8"/> 
 <title>TOP REGGAE</title>
 <style>
-	   
-	   body {
-	       background:green;}
-	
-	   h3 {
-	       margin-left:px;
-	       color:gold;
-	   }
-	   h {
-	       margin-left:100px;
-	       color:red;
-	   }
-	   .aud{
-	       margin-left:2px;
-	       width:48%;
-	       height:25px;
-	       
-	       
-	       
-	   }
-	   .foto {
-    position:absolute;
-    background:none;
-    width:95%;
-    height:500px;
-    
+    body {
+        font-family: Arial, sans-serif;
+        background: green;
+        color: white;
+    }
+    #playerContainer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: black;
+        padding: 10px;
+        text-align: center;
+        z-index: 9999;
+    }
+    audio {
+        width: 90%;
     }
     .bbt {
-        height:40px;
-        margin:2px;
-        text-align:center;
-        border-radius:10px;
-        position:relative;
-        margin-left:10px;
-        background:black;
-        color:white;
+        margin: 5px;
+        padding: 10px;
+        border-radius: 5px;
+        background: gold;
+        color: black;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
     }
-    
- #doa {
-        position:relative;
-        bottom:5%;
-        height:80px;
-        width:95%;
-        background:gold;
-        font-weight:bold;
-        display: inline-block;
-        border-radius:10px;
-        bottom:0px;
-        
-    }   
-    #volta{
-        
-        width:30%;
-        
-        height:25px;
-        background:red;
-        margin-left:10%;
-        border-radius:10px;
-        
-    }
-      #proximo{
-          
-        width:30%;
-        height:25px;
-        background:red;
-        margin-left:20%; 
-        border-radius:10px;
-        
-    }
-    a {
-        color:black;
-        outline:none;
-        border-decorate:none;
-    }
-    
-j {
-    position:absolute;
-      margin:auto;
-      margin-left:25%;
-      weight:900px;
-  }      
-    .blink { animation: blink 5s steps(1, end) infinite;}@keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; }}
-     
-	   </style>
 </style>
 </head>
 <body>
 <h3>PLAYLIST SÓ PEDRADA DO REGGAE</h3>
 <p>Atualizado em: <b>15/11/2024</b></p>
 
-<!-- Player único -->
-<audio id="musicPlayer" controls autoplay>
-    Seu navegador não suporta o elemento de áudio.
-</audio>
-
-<!-- Botões de controle -->
-<div>
+<div id="playerContainer">
+    <audio id="musicPlayer" controls autoplay>
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+    <br>
     <button onclick="player.pause()" class="bbt">Pause</button>
     <button onclick="player.volume += 0.1" class="bbt">Aumentar Volume</button>
     <button onclick="player.volume -= 0.1" class="bbt">Diminuir Volume</button>
@@ -109,61 +51,39 @@ j {
     <button onclick="tocarProxima()" class="bbt">Próxima Música</button>
 </div>
 
-<!-- Links de navegação -->
-
-
-<!-- Doação -->
-<button id="doa" onclick="alert('Obrigado pela sua doação!')">CLICK AQUI <br>↘MATENHA O SITE NO AR↙<br>↘FAÇA UMA DOAÇÃO DE R$ 2,00↙</button>
-
 <script>
 // Lista de músicas
 const musicas = [
     "01 Prisioneiro.mp3",
     "etiopia.MP3",
     "11_CRIMINALIDADE.MP3",
-    "certeza.mp3",
-    "05.mp3",
-    "06.mp3",
-    "07.mp3",
-    "08.mp3",
-    "09.mp3",
-    "10.mp3",
-    "11.mp3",
-    "12.mp3",
-    "13.mp3",
-    "14.mp3",
-    "15.mp3",
-    "16.mp3",
-    "17.mp3",
-    "18.mp3",
-    "19.mp3",
-    "20.mp3"
+    "certeza.mp3"
 ];
 
-// Controle de músicas
 let indiceAtual = 0;
 const player = document.getElementById("musicPlayer");
 
-// Função para tocar a próxima música
-function tocarProxima() {
-    indiceAtual = (indiceAtual + 1) % musicas.length; // Avança para a próxima música
-    player.src = musicas[indiceAtual];
-    player.play();
-}
-
-// Função para tocar a música anterior
-function tocarAnterior() {
-    indiceAtual = (indiceAtual - 1 + musicas.length) % musicas.length; // Volta para a música anterior
-    player.src = musicas[indiceAtual];
-    player.play();
-}
-
-// Evento para carregar a primeira música
+// Carregar a primeira música
 document.addEventListener("DOMContentLoaded", () => {
     player.src = musicas[indiceAtual];
+    player.play();
 });
 
-// Evento para tocar a próxima música quando terminar
+// Tocar próxima música
+function tocarProxima() {
+    indiceAtual = (indiceAtual + 1) % musicas.length;
+    player.src = musicas[indiceAtual];
+    player.play();
+}
+
+// Tocar música anterior
+function tocarAnterior() {
+    indiceAtual = (indiceAtual - 1 + musicas.length) % musicas.length;
+    player.src = musicas[indiceAtual];
+    player.play();
+}
+
+// Continuar com a próxima música automaticamente
 player.addEventListener("ended", tocarProxima);
 </script>
 </body>
