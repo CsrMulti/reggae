@@ -24,11 +24,12 @@
             z-index: 9999;
         }
         audio {
-            margin: 5px;
+        Margin:5px;
             width: 90%;
         }
         .bbt {
-            margin: 2px;
+            margin:2 px;
+            
             padding: 8px;
             border-radius: 5px;
             background: gold;
@@ -40,11 +41,11 @@
         .pedrada {
             width: 100%;
         }
-        p {
-            margin: 3px;
+        p{
+              margin:3px;
         }
-        h3 {
-            margin: 3px;
+        h3{
+              margin:3px;
         }
     </style>
 </head>
@@ -53,6 +54,8 @@
     <p>Atualizado em: <b>15/11/2024</b></p>
     <h3>PLAYLIST SÓ PEDRADA DO REGGAE</h3>
     <p id="musicaAtual">Tocando agora: Nenhuma música</p>
+    
+    
 
     <div id="playerContainer">
         <button onclick="diminuirVolume()" class="bbt">Diminuir Volume</button>
@@ -73,7 +76,27 @@
             "./01 Prisioneiro.mp3",
             "./etiopia.MP3",
             "./11_CRIMINALIDADE.MP3",
-            "./certeza.mp3"
+            "./certeza.mp3",
+            "./01.mp3",
+            "./02.mp3",
+            "./03.mp3",
+            "./04.mp3",
+            "./05.mp3",
+            "./06.mp3",
+            "./07.mp3",
+            "./08.mp3",
+            "./09.mp3",
+            "./10.mp3",
+            "./11.mp3",
+            "./12.mp3",
+            "./13.mp3",
+            "./14.mp3",
+            "./15.mp3",
+            "./16.mp3",
+            "./17.mp3",
+            "./18.mp3",
+            "./19.mp3",
+            "./20.mp3"
         ];
 
         let indiceAtual = 0;
@@ -92,7 +115,7 @@
                 console.log("Autoplay bloqueado. Usuário precisa interagir.");
             });
             atualizarNomeMusica();
-            player.volume = 0.5;
+            player.volume = 0.5; // Define volume inicial
         });
 
         // Tocar próxima música
@@ -101,7 +124,6 @@
             player.src = musicas[indiceAtual];
             player.play();
             atualizarNomeMusica();
-            enviarNotificacao(); // Atualizar notificação
         }
 
         // Tocar música anterior
@@ -110,7 +132,6 @@
             player.src = musicas[indiceAtual];
             player.play();
             atualizarNomeMusica();
-            enviarNotificacao(); // Atualizar notificação
         }
 
         // Controle de volume
@@ -130,88 +151,8 @@
             }
         }
 
-        // Função para enviar notificação
-        function enviarNotificacao() {
-            if ('serviceWorker' in navigator && 'PushManager' in window) {
-                navigator.serviceWorker.ready.then(function(registration) {
-                    registration.showNotification('TOP REGGAE', {
-                        body: `Tocando agora: ${musicas[indiceAtual].replace('./', '').replace('.mp3', '')}`,
-                        icon: './pedrada.jpg',
-                        actions: [
-                            { action: 'play', title: 'Play' },
-                            { action: 'pause', title: 'Pause' },
-                            { action: 'next', title: 'Próxima Música' }
-                        ]
-                    });
-                });
-            }
-        }
-
-        // Enviar notificação ao carregar
-        document.addEventListener("DOMContentLoaded", enviarNotificacao);
-    </script>
-    <script>
-        // Registrar Service Worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./service-worker.js').then(function() {
-                console.log("Service Worker registrado com sucesso!");
-            }).catch(function(error) {
-                console.error("Erro ao registrar Service Worker:", error);
-            });
-        }
-        self.addEventListener('notificationclick', function(event) {
-    event.notification.close();
-    const action = event.action;
-
-    switch (action) {
-        case 'play':
-            self.clients.matchAll().then(clients => {
-                clients.forEach(client => client.postMessage('play'));
-            });
-            break;
-        case 'pause':
-            self.clients.matchAll().then(clients => {
-                clients.forEach(client => client.postMessage('pause'));
-            });
-            break;
-        case 'next':
-            self.clients.matchAll().then(clients => {
-                clients.forEach(client => client.postMessage('next'));
-            });
-            break;
-        default:
-            break;
-    }
-});
-
-self.addEventListener('push', function(event) {
-    const options = {
-        body: 'Controle sua música!',
-        icon: './pedrada.jpg',
-        actions: [
-            { action: 'play', title: 'Play' },
-            { action: 'pause', title: 'Pause' },
-            { action: 'next', title: 'Próxima Música' }
-        ]
-    };
-    event.waitUntil(self.registration.showNotification('TOP REGGAE', options));
-});
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.addEventListener('message', function(event) {
-        switch (event.data) {
-            case 'play':
-                player.play();
-                break;
-            case 'pause':
-                player.pause();
-                break;
-            case 'next':
-                tocarProxima();
-                break;
-        }
-    });
-}
-
+        // Continuar com a próxima música automaticamente
+        player.addEventListener("ended", tocarProxima);
     </script>
 </body>
 </html>
